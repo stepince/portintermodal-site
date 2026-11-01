@@ -1,8 +1,7 @@
-// Contact form delivery. No backend: use an external form service or fall back to the visitor's email client.
-// Set formEndpoint (e.g. a Formspree/Basin/Getform URL that accepts JSON) and/or contactEmail before launch.
+// Contact form delivery: JSON POST to the email-api Fly app (see email-api/), which emails contact@portintermodal.com.
 const SITE_CONFIG = {
-  formEndpoint: '',
-  contactEmail: '',
+  formEndpoint: 'https://portintermodal-email.fly.dev/api/contact',
+  contactEmail: 'contact@portintermodal.com', // fallback shown if sending fails
 };
 
 document.getElementById('year')?.replaceChildren(String(new Date().getFullYear()));
@@ -28,9 +27,12 @@ if (form) {
     button.disabled = true; say('Sending…');
     try {
       const res = await fetch(SITE_CONFIG.formEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data) });
-      if (!res.ok) throw new Error(String(res.status));
+      if (!res.ok) { const err = new Error(String(res.status)); err.body = await res.json().catch(() => ({})); throw err; }
       form.reset(); say('Thanks. Your message has been sent and we will follow up.', 'ok');
-    } catch { say('Something went wrong sending your message. Please try again.', 'err'); }
+    } catch (e) {
+      const detail = e.body?.errors ? Object.values(e.body.errors).join(' ') : e.body?.error;
+      say(`${detail || 'Something went wrong sending your message.'} You can also email ${SITE_CONFIG.contactEmail}.`, 'err');
+    }
     button.disabled = false;
   });
 }

@@ -28,7 +28,32 @@ Edit the HTML directly. Only record things that actually happened.
 
 ## Contact form
 
-No custom backend. In `script.js`, set `SITE_CONFIG.formEndpoint` to a form service URL that accepts a JSON POST (Formspree, Basin, Getform), or `contactEmail` to fall back to the visitor's email client. Until one is set, the form shows a notice and is disabled.
+The site itself is static (GitHub Pages), so the form posts JSON to `email-api/`, a zero-dependency Node service on Fly.io (`portintermodal-email`) that validates, rate limits (5/hour per IP, 100/day total), drops honeypot hits, and emails `contact@portintermodal.com` through Resend. The endpoint is `SITE_CONFIG.formEndpoint` in `script.js`.
+
+**One-time setup**
+
+1. **Resend:** create an account, add the domain `portintermodal.com` under *Domains*, and create the DNS records it shows at Namecheap (*Advanced DNS*). They do not conflict with the Google MX records. Wait until the domain shows *Verified*, then create an API key.
+2. **Fly app and secret** (run from `email-api/`; the app name is already in `email-api/fly.toml`):
+
+```bash
+cd email-api
+fly apps create portintermodal-email
+fly secrets set RESEND_API_KEY=re_xxx --app portintermodal-email
+fly deploy
+```
+
+3. **Publish the site:** the endpoint in `script.js` is `https://portintermodal-email.fly.dev/api/contact`. Commit and push to `main` so GitHub Pages serves it.
+4. **Check:** `curl https://portintermodal-email.fly.dev/healthz` returns `{"ok":true}`; then submit the form once and confirm the mail arrives at `contact@portintermodal.com`.
+
+**Later deploys:** `cd email-api && fly deploy`. Tests run against a fake Resend server and send no mail:
+
+```bash
+node --test email-api/test.mjs
+```
+
+Until the domain is verified in Resend, mail can only be sent from `onboarding@resend.dev` to your own Resend account address. The service is named generically so other mail (for example invitations) can use it later.
+
+Optional env vars: `CONTACT_TO`, `CONTACT_FROM` (must be on a domain verified in Resend), `ALLOWED_ORIGINS`, `RATE_LIMIT_PER_IP_HOUR`, `RATE_LIMIT_PER_DAY`.
 
 ## Deploy (GitHub Pages)
 
