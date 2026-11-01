@@ -24,7 +24,7 @@ Edit the HTML directly. Only record things that actually happened.
 - **Development update:** `progress/index.html`. Add an `<article class="card update">` at the top of "Recent development updates", move milestones between lists by changing the `<li>` class (`complete`, `progress`, `upcoming`), update "Last updated", and bump `<lastmod>` in `sitemap.xml`. A comment at the top of the page lists the steps.
 - **Feature status:** `features/index.html` and the homepage card list. Use the badge classes `planned`, `dev`, `demo`. Never mark a feature "Available for Demo" unless it can be shown.
 - **Roadmap dates:** `roadmap/index.html`. Add a date only when one has been agreed.
-- **Demonstrations:** `demo/index.html`. Put images in `assets/`, add cards to the matching group, delete that group's "empty" line, and add the demo link at the bottom.
+- **Demonstrations:** `demo/index.html`. Put images in `assets/`, add cards to the matching group and delete that group's "empty" line. The prototype is invitation-only, so the page links to the contact form for invites.
 
 ## Contact form
 
