@@ -5,7 +5,7 @@ import { minify as minifyJs } from 'terser';
 await rm('dist', { recursive: true, force: true });
 await mkdir('dist', { recursive: true });
 
-export const pages = ['index.html', 'platform/index.html', 'features/index.html', 'progress/index.html', 'roadmap/index.html', 'demo/index.html', 'contact/index.html'];
+export const pages = ['index.html', 'platform/index.html', 'features/index.html', 'progress/index.html', 'roadmap/index.html', 'demo/index.html', 'contact/index.html', 'reduce-trucking-software-costs/index.html'];
 
 for (const file of pages) {
   const source = await readFile(file, 'utf8');
@@ -14,6 +14,7 @@ for (const file of pages) {
   await writeFile(`dist/${file}`, minified);
 }
 
+await writeFile('dist/calculator.js', (await minifyJs(await readFile('calculator.js', 'utf8'), { module: true })).code);
 await writeFile('dist/script.js', (await minifyJs(await readFile('script.js', 'utf8'))).code);
 for (const f of ['styles.css', 'robots.txt', 'sitemap.xml', 'favicon.svg', 'CNAME']) await cp(f, `dist/${f}`);
 // Optional folder for screenshots and other media

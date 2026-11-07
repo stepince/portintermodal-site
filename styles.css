@@ -36,3 +36,17 @@ h1,h2,h3{color:var(--navy);letter-spacing:-.02em;line-height:1.15;margin:0}h1{fo
 footer.wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px;padding:28px 0 40px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}footer p{margin:0}
 @media(max-width:900px){.grid.four,.grid.three,.steps{grid-template-columns:repeat(2,1fr)}.mock-grid{grid-template-columns:repeat(2,1fr)}.milestones{grid-template-columns:1fr}}
 @media(max-width:600px){.wrap{width:calc(100% - 32px)}.grid.four,.grid.three,.grid.two,.steps,.form .row{grid-template-columns:1fr}.hero{padding-top:48px}.closing{padding:26px}.header nav{gap:6px 16px}}
+/* Cost control, providers, calculator, FAQ */
+.hero .eyebrow+h1+.hero-copy{max-width:720px}.hero-note{max-width:640px;margin:18px auto 0;font-size:13px;color:var(--muted)}
+.icon{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:10px;background:var(--teal-soft);color:var(--teal);margin-bottom:12px}.icon svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.status.live{background:var(--teal-soft);color:var(--teal)}
+.fine{font-size:13px;color:var(--muted);max-width:760px;margin:20px 0 0}.callout{background:var(--ocean-soft);border-radius:12px;padding:22px 24px;margin-top:28px}.callout h3{font-size:20px;margin-bottom:6px}.callout p{margin:0;color:var(--ink)}
+.crumbs{font-size:13px;color:var(--muted);padding:18px 0 0}.crumbs ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}.crumbs li+li:before{content:'/';margin-right:6px;color:#b9c3d0}.crumbs a{color:var(--ocean);text-decoration:underline;text-underline-offset:3px}
+.page-hero{padding:48px 0 40px;text-align:left}.page-hero h1{margin-inline:0}.page-hero .hero-copy{margin-left:0}.page-hero .hero-actions{justify-content:flex-start}
+.prose{max-width:760px}.prose p,.prose li{color:var(--muted);font-size:17px}.prose ul{padding-left:20px}.prose h2{margin-top:0}
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}.calc fieldset{border:1px solid var(--line);border-radius:12px;padding:22px;margin:0;background:#fff}.calc legend{font-weight:700;color:var(--navy);padding:0 6px}
+.calc label{display:grid;gap:6px;font-size:14px;font-weight:600;margin-top:14px}.calc label small{font-weight:400;color:var(--muted)}.calc input{font:inherit;font-weight:400;padding:11px 12px;border:1px solid #cfd8e3;border-radius:7px;width:100%;color:var(--ink)}
+.results{display:grid;gap:12px}.result{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:flex;justify-content:space-between;align-items:baseline;gap:12px}.result span{color:var(--muted);font-size:14px}.result output{font-weight:700;font-size:20px;color:var(--navy);white-space:nowrap}
+.result.key-result{border-color:#14a8a8;background:#f4fbfb}.result output.neg{color:#b42318}.calc-msg{margin:0;font-size:14px;font-weight:600;min-height:1.5em}.calc-msg.neg{color:#b42318}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:0 20px;margin-bottom:12px}.faq summary{cursor:pointer;font-weight:700;color:var(--navy);padding:16px 0}.faq details p{margin:0 0 16px;color:var(--muted)}
+@media(max-width:900px){.calc{grid-template-columns:1fr}}

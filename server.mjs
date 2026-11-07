@@ -4,8 +4,8 @@ import { extname, resolve, sep } from 'node:path';
 
 const root = resolve('.');
 const types = { '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.webp': 'image/webp', '.mp4': 'video/mp4', '.txt': 'text/plain', '.xml': 'application/xml' };
-const pages = new Set(['index.html', 'platform/index.html', 'features/index.html', 'progress/index.html', 'roadmap/index.html', 'demo/index.html', 'contact/index.html']);
-const files = new Set(['styles.css', 'script.js', 'robots.txt', 'sitemap.xml', 'favicon.svg']);
+const pages = new Set(['index.html', 'platform/index.html', 'features/index.html', 'progress/index.html', 'roadmap/index.html', 'demo/index.html', 'contact/index.html', 'reduce-trucking-software-costs/index.html']);
+const files = new Set(['styles.css', 'script.js', 'robots.txt', 'sitemap.xml', 'favicon.svg', 'calculator.js']);
 
 createServer(async (req, res) => {
   try {
